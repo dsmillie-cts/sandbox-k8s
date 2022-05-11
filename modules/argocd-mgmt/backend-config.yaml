@@ -1,0 +1,10 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  namespace: argocd
+  name: argocd-backend-secure
+spec:
+  securityPolicy:
+     name: "ingress-security-policy"
+  cdn:
+    enabled: false

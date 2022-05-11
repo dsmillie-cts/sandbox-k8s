@@ -1,0 +1,5 @@
+- op: add
+  path: /metadata/annotations
+  value:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8082"

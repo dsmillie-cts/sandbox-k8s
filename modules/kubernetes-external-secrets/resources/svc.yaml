@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: vault-agent
+  name: external-secrets
+  labels:
+    app: external-secrets
+spec:
+  selector:
+    app: external-secrets
+  ports:
+    - protocol: TCP
+      port: 3001
+      name: external-secrets
+      targetPort: ext-secrets

@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../modules/kubernetes-external-secrets
+  - external-secrets-cm.yaml
+
+images:
+  - name: external-secrets
+    newName: gcr.io/vdxl-mgmt-01/external-secrets
+    newTag: "5.2.0"
+
+commonLabels:
+  env: mgmt
+  region: europe-west1

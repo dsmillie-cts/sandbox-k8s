@@ -1,0 +1,26 @@
+- op: replace
+  path: /spec/template/spec/containers/0/command/2
+  value: "50"
+- op: replace
+  path: /spec/template/spec/containers/0/command/4
+  value: "25"
+- op: replace
+  path: /spec/replicas
+  value: 3
+- op: add
+  path: /spec/template/spec/containers/0/command/5
+  value: "--kubectl-parallelism-limit"
+- op: add
+  path: /spec/template/spec/containers/0/command/6
+  value: "10"
+- op: add
+  path: /spec/template/spec/containers/0/command/9
+  value: "--request-timeout"
+- op: add
+  path: /spec/template/spec/containers/0/command/10
+  value: "1m"
+- op: add
+  path: /spec/template/spec/containers/0/env
+  value:
+    - name: "ARGOCD_CONTROLLER_REPLICAS"
+      value: "3"

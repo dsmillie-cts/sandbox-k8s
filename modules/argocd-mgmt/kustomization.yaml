@@ -1,0 +1,54 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ns.yaml
+  - https://github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=v1.8.2
+  - backend-config.yaml
+  - applications
+
+configMapGenerator:
+  - files:
+      - repositories
+      - resource.customizations
+    name: argocd-cm
+    behavior: replace
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    app.kubernetes.io/part-of: argocd
+
+patchesJson6902:
+  - target:
+      version: v1
+      kind: Service
+      name: argocd-server
+    path: server-svc-patch.yaml
+  - target:
+      version: v1
+      kind: Service
+      name: argocd-metrics
+    path: metrics-svc-patch.yaml
+  - target:
+      version: v1
+      kind: Service
+      name: argocd-repo-server
+    path: repo-svc-patch.yaml
+  - target:
+      version: v1
+      group: apps
+      kind: Deployment
+      name: argocd-server
+    path: server-deployment-patch.yaml
+  - target:
+      version: v1
+      group: apps
+      kind: Deployment
+      name: argocd-repo-server
+    path: repo-patch.yaml
+  - target:
+      version: v1
+      group: apps
+      kind: StatefulSet
+      name: argocd-application-controller
+    path: controller-patch.yaml

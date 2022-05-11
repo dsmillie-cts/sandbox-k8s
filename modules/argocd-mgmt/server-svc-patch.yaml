@@ -1,0 +1,15 @@
+- op: replace
+  path: /spec/ports
+  value:
+    - name: argocd
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+- op: add
+  path: /metadata/annotations
+  value:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8083"
+- op: add
+  path: /spec/type
+  value: NodePort

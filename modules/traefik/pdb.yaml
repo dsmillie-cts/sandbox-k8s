@@ -1,0 +1,13 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: traefik-ingress-controllercouchbase-db
+  namespace: traefik
+  labels:
+    k8s-app: traefik-ingress-lb
+spec:
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress-lb
+  maxUnavailable: 1

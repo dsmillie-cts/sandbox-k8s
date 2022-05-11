@@ -1,0 +1,6 @@
+- url: git@github.com:dsmillie-cts/sandbox-k8s.git
+  sshPrivateKeySecret:
+    name: argocd-config
+    key: sshPrivateKey
+  insecure: true
+  insecureIgnoreHostKey: true

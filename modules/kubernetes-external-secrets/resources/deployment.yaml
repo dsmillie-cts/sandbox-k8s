@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: vault-agent
+  name: external-secrets
+  labels:
+    app: external-secrets
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: external-secrets
+  template:
+    metadata:
+      labels:
+        app: external-secrets
+    spec:
+      serviceAccountName: external-secrets
+      containers:
+        - name: external-secrets
+          image: external-secrets
+          ports:
+            - name: ext-secrets
+              containerPort: 3001
+          env:
+            - name: "LOG_LEVEL"
+              value: "info"
+            - name: "LOG_MESSAGE_KEY"
+              value: "msg"
+            - name: "METRICS_PORT"
+              value: "3001"
+            - name: "POLLER_INTERVAL_MILLISECONDS"
+              value: "10000"
+            - name: "VAULT_ADDR"
+              valueFrom:
+                configMapKeyRef:
+                  name: external-secrets-cm
+                  key: VAULT_ADDR
+            - name: NODE_EXTRA_CA_CERTS
+              valueFrom:
+                configMapKeyRef:
+                  name: external-secrets-cm
+                  key: NODE_EXTRA_CA_CERTS
+          livenessProbe:
+            httpGet:
+              port: 3001
+              path: /metrics
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 3001
+              path: /metrics
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 5
+          # Params for env vars populated from k8s secrets
+          volumeMounts:
+            - name: vault
+              mountPath: /etc/ssl/certs/
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: vault
+          secret:
+            secretName: vault-tls
+            items:
+              - key: ca.crt
+                path: vault.pem
