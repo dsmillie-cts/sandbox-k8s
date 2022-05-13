@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "argocd-config",
+    "namespace": "argocd",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "argocd-config",
+        "namespace": "argocd",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "sshPrivateKey": "AgCchj1GRMKQ0SP0Tm4RRIDJH8MG1dFVCh51SNnDiiqh3E28tJvm6cFNUOaDNngXEw2GTD6cuHVRvvP2ugYZbe9COyIKg58sTqhKbmuD7Te7IdyMdtbfL2y6KmyEdRXA7SGvnaTXrX+njC5xGb5XgXXtP9JxJ5QTmBd+5xEnhPB0xVnL8GnTioRtXcAwo05mW4hTxkOjq1+aeo01Dgh+rzQp5JccMOTrk6ZoZ2A/8rlcw+kTJQFFEeNKP8t/b60xEN9hlI4YSxdx9pCrGkrmouYqhlvM8MhUTmTXu8t99+nrbHdiUfvc4WB72kHyNshvehEn9Mpoacppx2ee7RfnwdlixahXfay5xdcZKbNSUylTGGgZc/WPejaMD4+KH+S2M0LT4xFHWhB10b/GKv7049t+c124srvDvwQjj6zKrvpyCGqXQ/ICNc4pE13rk0qfOJ+FBa3gF/lz6kVO1xSkoBqh37yfRRYjKEAlGfHa7GxJaviPrqr0DSMRuKXBEtz7nLUigDSK1ZaF0LCZXw7VoQTSR3zoS8u0VclMPgWNvKwj6L/XPiCHc28hZVdi8vB2/RVcj7J2RWdiEBz15BJ+gKvd5DrVyzqIPCC9wPWnLiIc/kCG6VqpUTmrlLYPv9YxzcW0/d+phsHIZBGOsi1+4KwXGfu0fT7i6kvoarTcuUoaB9pUtU2tHh0kbeAjhTfuuj3ll4AKuC46OYdngN2X0rVVZ98L5yszILCGi85qeFlaiYHhfK92VRq7QyG/2qP2es2OMgv+1I3HQF/rRbqmcrFuaL0neg+FJQXdMD+Vmu1FfUGPrTD56uibtUOReThsiXJ0LeViIh6BIzpOUqh9pRPVH9JzlQcXVJ6YhZ4Vpcb99KASHt4QXPQ/ljvoRYjbPjfmEvtALX08c3bZWOdY5nwnKXQyHi+ZUgwwY+d6k/M98fwT2EV4KHpbaPNTZP8/QfGozPw81wOPwd9NjhOksdNUfuhC/zeDNT8rnVsO/GiIJmHb6mZVkNshfhDZQYRiQy9UKJ/LsWad/Cjc3TK3Us5C+eg+Ga9vHkkCHDUX8Iypi1FHuLJ68byFpNtoSf16ZAvdvXj83iS7kfC5o497Wwubb1Ek7l/cQZ5qaLBDKqv+8ikJR43g62lPm9TNDk/nz08+yQAvUT3DfZnDS4K0PD5iEzgGKQDGP/670qhfxESZrwYSc+QSgFDJLqApvVcUwC4i9Zq+d3STmhDX3DUVggyhepqExWpNmANScm0="
+    }
+  }
+}

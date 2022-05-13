@@ -5,7 +5,7 @@ resources:
   - ../../../modules/argocd-mgmt
   - ingress.yaml
   - projects
-  - argocd-ssh-ss.yaml
+  - argocd-ssh-ed.yaml
   - argocd-secret-ss.yaml
 
 namespace: argocd
