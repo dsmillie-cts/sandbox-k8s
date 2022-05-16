@@ -8,3 +8,5 @@ resources:
   - cert-manager.yaml
   - sealed-secrets.yaml
 
+namespace: argocd
+
