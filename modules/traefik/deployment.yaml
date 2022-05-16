@@ -1,0 +1,67 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: traefik-ingress-controller
+  namespace: kube-system
+  labels:
+    k8s-app: traefik-ingress-lb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      k8s-app: traefik-ingress-lb
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik-ingress-lb
+        name: traefik-ingress-lb
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: k8s-app
+                      operator: In
+                      values:
+                        - traefik-ingress-lb
+                topologyKey: failure-domain.beta.kubernetes.io/zone
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+      containers:
+        - image: traefik:v2.2
+          name: traefik-ingress-lb
+          resources:
+            requests:
+              cpu: 250m
+              memory: "256Mi"
+          ports:
+            - name: web
+              containerPort: 80
+            - name: websecure
+              containerPort: 443
+            - name: admin
+              containerPort: 8080
+            - name: metrics
+              containerPort: 8888
+              hostPort: 8888
+          args:
+            - --api
+            - --api.dashboard=true
+            - --ping
+            - --accesslog
+            - --providers.kubernetescrd
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
+            - --entrypoints.websecure.http.tls=true
+            - --providers.kubernetesIngress
+            - --serverstransport.insecureskipverify=true
+            - --metrics=true
+            - --metrics.prometheus=true
+            - --entrypoints.metrics.address=:8888
+            - --metrics.prometheus.entrypoint=metrics
+            - --metrics.prometheus.addEntryPointsLabels=true
+            - --metrics.prometheus.addServicesLabels=true
