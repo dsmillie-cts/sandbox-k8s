@@ -11,7 +11,7 @@ spec:
     match: Host(`argocd.dsmillie.cts-gcp.com`) && PathPrefix(`/`)
     middlewares:
     - name: https-only
-      namespace: default
+      namespace: traefik
     services:
     - name: argocd-server
       port: 8080
