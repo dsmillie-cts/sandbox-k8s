@@ -6,5 +6,4 @@ resources:
 - service.yaml
 - rbac.yaml
 - crds.yaml
-- pdb.yaml
 - middleware.yaml
