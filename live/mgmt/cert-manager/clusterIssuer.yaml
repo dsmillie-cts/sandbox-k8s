@@ -4,7 +4,7 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: mark.lightfoot@cloudsolutions.co.uk
+    email: david.smillie@cts.co
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: clusterissuer-stg-key
@@ -19,7 +19,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: mark.lightfoot@cloudsolutions.co.uk
+    email: david.smillie@cts.co
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: clusterissuer-prod-key
